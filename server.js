@@ -21,6 +21,17 @@ app.use('/api/fetch',UserFetchRoute);
 // Mount the router with '/api' prefix
 app.use('/api', UpdateRouter);
 app.use('/api/deleteuser', DeleteRoute);
+app.use(helmet({
+    contentSecurityPolicy: {
+        directives: {
+            defaultSrc: ["'self'"],
+            fontSrc: ["'self'", 'https://fonts.gstatic.com'], // Allow fonts from Google Fonts
+            scriptSrc: ["'self'", "'unsafe-inline'", "https://www.google-analytics.com"], // Example for Google Analytics
+            styleSrc: ["'self'", 'https://fonts.googleapis.com', "'unsafe-inline'"], // Allow Google Fonts CSS
+            // Add other directives as necessary
+        }
+    }
+}));
 
 /* if(process.env.NODE_ENV==='production'){
     const dirPath=path.resolve();
