@@ -1,0 +1,21 @@
+{
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "mongoose": "^8.8.2",
+    "nodemon": "^3.1.7"
+  },
+  "scripts": {
+    "start": "node start",
+    "dev": "nodemon start",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+  },
+  "name": "server",
+  "version": "1.0.0",
+  "main": "server.js",
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
