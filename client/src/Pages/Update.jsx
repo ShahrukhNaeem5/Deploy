@@ -28,7 +28,7 @@ const Home = () => {
 
         if(id){
             // const response=await axios.put(`http://localhost:4000/api/updatelist/update/${id}`,Data,{
-                const response=await axios.put(`/api/updatelist/update/${id}`,Data,{
+                const response=await axios.put(`https://deploy-production-bcbd.up.railway.app/api/updatelist/update/${id}`,Data,{
                  header:{
                      'content-type':'application/json'
                  }

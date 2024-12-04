@@ -25,7 +25,7 @@ const Home = () => {
     
         const { UserName, UserEmail, UserPassword } = Data;
     
-        axios.post("/api/user/", {
+        axios.post("https://deploy-production-bcbd.up.railway.app/api/user/", {
             UserName: UserName,
             UserEmail: UserEmail,
             UserPassword: UserPassword,

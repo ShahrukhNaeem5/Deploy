@@ -8,7 +8,7 @@ const List = () => {
 
     const UserListItem = async () => {
         try {
-            const response = await axios.get("/api/fetch/list");
+            const response = await axios.get("https://deploy-production-bcbd.up.railway.app/api/fetch/list");
             setData(response.data.UserList); 
             console.log(response.data.UserList);
         } catch (error) {
@@ -26,7 +26,7 @@ const List = () => {
 
     const HandleDelete=async(id)=>{
       try {
-        const DeletedUser= await axios.delete(`/api/deleteuser/delete/${id}`);
+        const DeletedUser= await axios.delete(`https://deploy-production-bcbd.up.railway.app/api/deleteuser/delete/${id}`);
         setData((prevData) => prevData.filter(item => item._id !== id));
         console.log('User deleted successfully', DeletedUser.data);
 
