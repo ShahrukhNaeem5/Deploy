@@ -22,13 +22,21 @@ app.use('/api/fetch',UserFetchRoute);
 app.use('/api', UpdateRouter);
 app.use('/api/deleteuser', DeleteRoute);
 
-if(process.env.NODE_ENV==='production'){
+/* if(process.env.NODE_ENV==='production'){
     const dirPath=path.resolve();
     app.use(express.static("client/dist"));
     app.get("*",(req,res)=>{
         res.sendFile(path.resolve(dirPath,"client","dist","index.html"));
     })
-}
+} */
+    if(process.env.NODE_ENV === 'production') {
+        const dirPath = path.resolve();
+        // Serve the React build output from the 'client/build' folder
+        app.use(express.static(path.join(dirPath, 'client', 'build')));
+        app.get('*', (req, res) => {
+            res.sendFile(path.resolve(dirPath, 'client', 'build', 'index.html'));
+        });
+    }
 
 
 
