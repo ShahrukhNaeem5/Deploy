@@ -27,17 +27,12 @@ app.use('/api/fetch',UserFetchRoute);
 // Mount the router with '/api' prefix
 app.use('/api', UpdateRouter);
 app.use('/api/deleteuser', DeleteRoute);
-app.use(helmet({
-    contentSecurityPolicy: {
-        directives: {
-            defaultSrc: ["'self'"],
-            fontSrc: ["'self'", 'https://fonts.gstatic.com'], // Allow fonts from Google Fonts
-            scriptSrc: ["'self'", "'unsafe-inline'", "https://www.google-analytics.com"], // Example for Google Analytics
-            styleSrc: ["'self'", 'https://fonts.googleapis.com', "'unsafe-inline'"], // Allow Google Fonts CSS
-            // Add other directives as necessary
-        }
+app.use(helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      fontSrc: ["'self'", "*"],  // Allow all sources (not recommended)
     }
-}));
+  }));
 
 /* if(process.env.NODE_ENV==='production'){
     const dirPath=path.resolve();
@@ -46,14 +41,15 @@ app.use(helmet({
         res.sendFile(path.resolve(dirPath,"client","dist","index.html"));
     })
 } */
-    if(process.env.NODE_ENV === 'production') {
-        const dirPath = path.resolve();
-        // Serve the React build output from the 'client/build' folder
-        app.use(express.static(path.join(dirPath, 'client', 'build')));
+    if (process.env.NODE_ENV === 'production') {
+        const path = require('path');
+        app.use(express.static(path.join(__dirname, 'client', 'build')));
+      
         app.get('*', (req, res) => {
-            res.sendFile(path.resolve(dirPath, 'client', 'build', 'index.html'));
+          res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
         });
-    }
+      }
+      
 
 
 

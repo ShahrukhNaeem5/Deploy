@@ -9,6 +9,7 @@ const List = () => {
     const UserListItem = async () => {
         try {
             const response = await axios.get("https://deploy-production-bcbd.up.railway.app/api/fetch/list");
+            
             setData(response.data.UserList); 
             console.log(response.data.UserList);
         } catch (error) {
