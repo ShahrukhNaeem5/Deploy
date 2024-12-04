@@ -42,13 +42,15 @@ app.use(helmet.contentSecurityPolicy({
     })
 } */
     if (process.env.NODE_ENV === 'production') {
-        const path = require('path');
-        app.use(express.static(path.join(__dirname, 'client', 'build')));
-      
+        // Make sure the path points to the correct build folder
+        const buildPath = path.join(__dirname, 'client', 'build');
+        app.use(express.static(buildPath));
+    
+        // This will handle all routes and serve index.html for non-API routes
         app.get('*', (req, res) => {
-          res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+            res.sendFile(path.resolve(buildPath, 'index.html'));
         });
-      }
+    }
       
 
 
