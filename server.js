@@ -1,10 +1,14 @@
 const express=require("express");
 const mongoose=require("mongoose");
 const cors=require("cors");
+const helmet = require('helmet');
+
 const UserRoute=require("./routes/UserRoute");
+
 const UserFetchRoute=require("./routes/UserFetchRoute");
 const UpdateRouter=require("./routes/UpdateRouter");
 const DeleteRoute=require("./routes/DeleteRoute");
+
 require("dotenv").config({path:'./.env'});
 
 const path =require("path")
@@ -16,6 +20,8 @@ const Db_Connection =require("./config/Db");
 const app =express();
 app.use(express.json());
 app.use(cors());
+app.use(helmet());
+
 app.use('/api/user',UserRoute);
 app.use('/api/fetch',UserFetchRoute);
 // Mount the router with '/api' prefix
